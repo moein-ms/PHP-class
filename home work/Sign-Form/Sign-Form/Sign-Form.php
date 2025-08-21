@@ -2,6 +2,10 @@
 <?php
 
     
+
+
+    if (isset($_POST['Age'])){
+
     $file = 'List.txt';
     $File_contents = file_get_contents($file);
     if ($File_contents) {
@@ -9,9 +13,7 @@
     }else{
          $users = [];
     };
-
-  
-    $user = [      
+                $user = [      
         "FName" => $_POST['FName'],
         "LName" => $_POST['LName'],
         "Age" => $_POST['Age'],
@@ -20,8 +22,11 @@
     ];
 
          $users [] = $user ;
-        $data = unserialize($users);
+        $data = serialize( $users );
         file_put_contents( $file , $data . PHP_EOL , FILE_APPEND); 
+
+
+    }
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +41,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK" crossorigin="anonymous"></script>
 </head>
 <body class="d-flex justify-content-center align-items-center mt-5">
+
+
    <form class="form gap-2 w-25 d-flex flex-column" method="post" action = "">
 
 <label for="FName">Enter your First Name</label>
@@ -57,5 +64,6 @@
     <button>Sub</button>
 
    </form> 
+
 </body>
 </html>
