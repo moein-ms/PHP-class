@@ -6,25 +6,7 @@
 
     if (isset($_POST['Age'])){
 
-    $file = 'List.txt';
-    $File_contents = file_get_contents($file);
-    if ($File_contents) {
-        $users =  unserialize($File_contents);
-    }else{
-         $users = [];
-    };
-                $user = [      
-        "FName" => $_POST['FName'],
-        "LName" => $_POST['LName'],
-        "Age" => $_POST['Age'],
-        "gender" => $_POST["gender"],
-        "Phonenumber" => $_POST['Phonenumber'],
-        "Address" => $_POST['Address']
-    ];
-
-         $users [] = $user ;
-        $data = serialize( $users );
-        file_put_contents( $file , $data . PHP_EOL , FILE_APPEND); 
+    include_once("conection.php");
 
 
     }
